@@ -30,16 +30,20 @@ lab %>%
 
 ```{r}
 world <- ne_countries(scale = "medium", returnclass = "sf")
+
+```
+
+
+```{r, message=FALSE}
 lab %>% 
   group_by(Country,lat,long) %>% 
   summarize(n=n()) %>% 
   ggplot() +
   geom_sf(data = world) +
-  geom_point(aes(x=long, y=lat, size=n,color=6*n), color="red", fill="red", alpha=0.8, shape=21)+
+  geom_point(aes(x=long, y=lat, size=n,color=6*n), color="red", fill="red", alpha=0.8, shape=21) +
   scale_size(range=c(1,10),breaks=c(1,5,10,20,50)) +
-  labs(title= "Feschotte Lab Diversity", subtitle="From 2014-2020")+
-  theme(panel.grid = element_blank())
+  labs(title= "Feschotte Lab Diversity", subtitle="From 2014-2020") +
+  theme(panel.grid = element_blank()) +
   theme(axis.title.y = element_blank(), axis.title.x = element_blank())
-  
 ```
 
