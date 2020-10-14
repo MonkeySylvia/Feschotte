@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Feschotte lab diversity"
 output: github_document
 ---
 
@@ -7,21 +7,21 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#read csv
-```{r}
+#Read csv and load libraries
+```{r,message=FALSE, results="hide"}
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(knitr))
 lab <- read_csv("Lab_members_stats_Feschotte.csv")
 lab
 ```
 
-#world map
-```{r}
+#Create a world map
+```{r, message=FALSE}
 library("rnaturalearth") # install.packages("rnaturalearth")
 library("rnaturalearthdata") # install.packages("rnaturalearthdata")
 library("rgeos") #install.packages("rgeos")
 ```
-```{r}
+```{r, echo=FALSE,results="hide"}
 lab %>% 
   group_by(Country,lat,long) %>% 
   summarize(n=n())
