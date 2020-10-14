@@ -22,30 +22,18 @@ library("rnaturalearthdata") # install.packages("rnaturalearthdata")
 library("rgeos") #install.packages("rgeos")
 ```
 ```{r}
-lab <- lab %>% mutate(country = Country of Citizenship)
-head(lab)
+lab %>% 
+  group_by(Country) %>% 
+  summarise(n=n())
 ```
 
 
-
-
-
-
-
 ```{r}
-
-#count(Name
-#  group_by(`Country of Citizenship`) %>% 
-#  summarize(sum= count(Name))
-
-
-
-
-
-#world <- ne_countries(scale = "medium", returnclass = "sf")
-#filter(coronavirus, date == max(coronavirus$date), type == "confirmed", cases > 5000) %>%
-#  ggplot() +
-#  geom_sf(data = world) +
-#  geom_point(aes(x=long, y=lat, size=cases), color="red", fill="red", alpha=0.5, shape=21) 
+world <- ne_countries(scale = "medium", returnclass = "sf")
+lab %>% 
+  group_by(Country) %>% 
+  ggplot() +
+  geom_sf(data = world) +
+  geom_point(aes(x=long, y=lat, size=number), color="red", fill="red", alpha=0.5, shape=21) 
 ```
 
