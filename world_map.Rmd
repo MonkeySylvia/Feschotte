@@ -23,8 +23,8 @@ library("rgeos") #install.packages("rgeos")
 ```
 ```{r}
 lab %>% 
-  group_by(Country) %>% 
-  summarise(n=n())
+  group_by(Country,lat,long) %>% 
+  summarize(n=n())
 ```
 
 
@@ -35,6 +35,6 @@ lab %>%
   summarize(n=n()) %>% 
   ggplot() +
   geom_sf(data = world) +
-  geom_point(aes(x=long, y=lat, size=n), color="red", fill="red", alpha=0.5, shape=21) 
+  geom_point(aes(x=long, y=lat, size=n,color=n), color="red", fill="red", alpha=0.5, shape=21) 
 ```
 

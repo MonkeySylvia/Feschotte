@@ -64,32 +64,32 @@ library("rgeos") #install.packages("rgeos")
 
 ``` r
 lab %>% 
-  group_by(Country) %>% 
-  summarise(n=n())
+  group_by(Country,lat,long) %>% 
+  summarize(n=n())
 ```
 
-    ## # A tibble: 19 x 2
-    ##    Country                n
-    ##    <chr>              <int>
-    ##  1 Brazil                 1
-    ##  2 Canada                 1
-    ##  3 China                  6
-    ##  4 Colombia               1
-    ##  5 France                 4
-    ##  6 Gabon                  1
-    ##  7 Hong Kong              2
-    ##  8 India                  6
-    ##  9 Italy                  1
-    ## 10 Mexico                 1
-    ## 11 Nepal                  1
-    ## 12 Philipine              1
-    ## 13 South Korea            1
-    ## 14 Spain                  1
-    ## 15 Taiwan                 1
-    ## 16 United Kingdom         1
-    ## 17 United States         52
-    ## 18 United States/Peru     1
-    ## 19 <NA>                   1
+    ## # A tibble: 18 x 4
+    ## # Groups:   Country, lat [18]
+    ##    Country            lat    long     n
+    ##    <chr>            <dbl>   <dbl> <int>
+    ##  1 Brazil         -14.2    -51.9      1
+    ##  2 Canada          53.9   -117.       1
+    ##  3 China           31.8    117.       6
+    ##  4 Colombia         4.57   -74.3      1
+    ##  5 France          46.2      2.21     4
+    ##  6 Gabon           -0.804   11.6      1
+    ##  7 Hong Kong       22.3    114.       2
+    ##  8 India           20.6     79.0      6
+    ##  9 Italy           41.9     12.6      1
+    ## 10 Mexico          23.6   -103.       1
+    ## 11 Nepal           28.2     84.2      1
+    ## 12 Peru            -9.19   -75.0      1
+    ## 13 Philipine       12.9    122.       1
+    ## 14 South Korea     35.9    128.       1
+    ## 15 Spain           40.5     -3.75     1
+    ## 16 Taiwan          23.7    121        1
+    ## 17 United Kingdom  55.4     -3.44     1
+    ## 18 United States   40     -100       53
 
 ``` r
 world <- ne_countries(scale = "medium", returnclass = "sf")
@@ -98,7 +98,7 @@ lab %>%
   summarize(n=n()) %>% 
   ggplot() +
   geom_sf(data = world) +
-  geom_point(aes(x=long, y=lat, size=n), color="red", fill="red", alpha=0.5, shape=21) 
+  geom_point(aes(x=long, y=lat, size=n,color=n), color="red", fill="red", alpha=0.5, shape=21) 
 ```
 
 ![](world_map_files/figure-markdown_github/unnamed-chunk-4-1.png)
