@@ -99,7 +99,9 @@ lab %>%
   ggplot() +
   geom_sf(data = world) +
   geom_point(aes(x=long, y=lat, size=n,color=6*n), color="red", fill="red", alpha=0.5, shape=21)+
-  scale_size(range=c(1,10),breaks=c(1,5,10,20,50))
+  scale_size(range=c(1,10),breaks=c(1,5,10,20,50)) +
+  labs(title= "Feschotte Lab Diversity", subtitle="From 2014-2020")+
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank())
 ```
 
 ![](world_map_files/figure-markdown_github/unnamed-chunk-4-1.png)
