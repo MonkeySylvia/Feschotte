@@ -94,10 +94,11 @@ lab %>%
 ``` r
 world <- ne_countries(scale = "medium", returnclass = "sf")
 lab %>% 
-  group_by(Country) %>% 
+  group_by(Country,lat,long) %>% 
+  summarize(n=n()) %>% 
   ggplot() +
   geom_sf(data = world) +
-  geom_point(aes(x=long, y=lat, size=number), color="red", fill="red", alpha=0.3, shape=21) 
+  geom_point(aes(x=long, y=lat, size=n), color="red", fill="red", alpha=0.5, shape=21) 
 ```
 
 ![](world_map_files/figure-markdown_github/unnamed-chunk-4-1.png)
