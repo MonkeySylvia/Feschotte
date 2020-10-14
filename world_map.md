@@ -98,7 +98,8 @@ lab %>%
   summarize(n=n()) %>% 
   ggplot() +
   geom_sf(data = world) +
-  geom_point(aes(x=long, y=lat, size=n,color=n), color="red", fill="red", alpha=0.5, shape=21) 
+  geom_point(aes(x=long, y=lat, size=n,color=6*n), color="red", fill="red", alpha=0.5, shape=21)+
+  scale_size(range=c(1,10),breaks=c(1,5,10,20,50))
 ```
 
 ![](world_map_files/figure-markdown_github/unnamed-chunk-4-1.png)
