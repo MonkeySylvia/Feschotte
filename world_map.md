@@ -98,10 +98,23 @@ lab %>%
   summarize(n=n()) %>% 
   ggplot() +
   geom_sf(data = world) +
-  geom_point(aes(x=long, y=lat, size=n,color=6*n), color="red", fill="red", alpha=0.5, shape=21)+
+  geom_point(aes(x=long, y=lat, size=n,color=6*n), color="red", fill="red", alpha=0.8, shape=21)+
   scale_size(range=c(1,10),breaks=c(1,5,10,20,50)) +
   labs(title= "Feschotte Lab Diversity", subtitle="From 2014-2020")+
-  theme(axis.title.y = element_blank(), axis.title.x = element_blank())
+  theme(panel.grid = element_blank())
 ```
 
 ![](world_map_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+``` r
+  theme(axis.title.y = element_blank(), axis.title.x = element_blank())
+```
+
+    ## List of 2
+    ##  $ axis.title.x: list()
+    ##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+    ##  $ axis.title.y: list()
+    ##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+    ##  - attr(*, "class")= chr [1:2] "theme" "gg"
+    ##  - attr(*, "complete")= logi FALSE
+    ##  - attr(*, "validate")= logi TRUE
