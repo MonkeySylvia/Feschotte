@@ -59,3 +59,46 @@ ggplot(lab, mapping=aes(x="", y=count, fill=Gender)) +
 ```
 
 ![](world_map_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+### Ethnicity distribution in Feschotte lab
+
+tidy up the PIs typo
+====================
+
+``` r
+table(lab$Race)
+```
+
+    ## 
+    ##   Asian   Black  Latina  Latino Latino?   white   White 
+    ##      29       3       3       6       1       1      41
+
+``` r
+lab_ethnicity <- lab %>% 
+  mutate(Race= ifelse(Race == "white", "White", Race)) %>% 
+  mutate(Race= ifelse(Race == "Latino?", "Latino", Race)) %>% 
+  mutate(Race= ifelse(Race == "Latina", "Latino", Race))
+table(lab_ethnicity$Race)
+```
+
+    ## 
+    ##  Asian  Black Latino  White 
+    ##     29      3     10     42
+
+``` r
+mycols2 <-c("coral3","darkslategray4","steelblue4","orange3")
+lab_ethnicity %>% group_by(Race) %>% 
+  summarize(count=n()) %>% 
+  arrange(desc(Race)) %>%
+  mutate(lab.count = cumsum(count) - 0.5*count) %>% 
+ggplot(mapping=aes(x="", y=count, fill=Race)) +
+  geom_bar(stat="identity", width=1, alpha=0.8) +
+  coord_polar("y", start=0) +
+  theme(axis.text.x=element_blank())+
+  scale_fill_manual(values = mycols2) +
+  geom_text(aes(y = lab.count, label =count), color = "white") +
+  labs(title="Ethinicity distribution in Feschotte lab") +
+  theme_void()
+```
+
+![](world_map_files/figure-markdown_github/unnamed-chunk-9-1.png)
