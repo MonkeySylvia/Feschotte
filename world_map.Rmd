@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r,message=FALSE, results="hide"}
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(knitr))
+library(ggplot2)
 lab <- read_csv("Lab_members_stats_Feschotte.csv")
 lab
 ```
@@ -45,5 +46,55 @@ lab %>%
   labs(title= "Feschotte Lab Diversity", subtitle="From 2014-2020") +
   theme(panel.grid = element_blank()) +
   theme(axis.title.y = element_blank(), axis.title.x = element_blank())
+```
+
+###Gender distribution
+
+```{r}
+mycols <-c("goldenrod2","palegreen4")
+lab %>% group_by(Gender) %>% 
+  summarize(count=n()) %>% 
+  arrange(desc(Gender)) %>%
+  mutate(lab.ypos = cumsum(count) - 0.5*count) %>% 
+ggplot(lab, mapping=aes(x="", y=count, fill=Gender)) +
+  geom_bar(stat="identity", width=1, alpha=0.8) +
+  coord_polar("y", start=0) +
+  theme(axis.text.x=element_blank())+
+  scale_fill_manual(values = mycols) +
+  geom_text(aes(y = lab.ypos, label =count), color = "white") +
+  labs(title="Gender distribution in Feschotte lab") +
+  theme_void()
+  
+```
+
+###Ethnicity distribution in Feschotte lab
+#tidy up the PIs typo
+```{r}
+table(lab$Race)
+```
+
+```{r}
+lab_ethnicity <- lab %>% 
+  mutate(Race= ifelse(Race == "white", "White", Race)) %>% 
+  mutate(Race= ifelse(Race == "Latino?", "Latino", Race)) %>% 
+  mutate(Race= ifelse(Race == "Latina", "Latino", Race))
+table(lab_ethnicity$Race)
+
+```
+
+```{r}
+mycols2 <-c("coral3","darkslategray4","steelblue4","orange3")
+lab_ethnicity %>% group_by(Race) %>% 
+  summarize(count=n()) %>% 
+  arrange(desc(Race)) %>%
+  mutate(lab.count = cumsum(count) - 0.5*count) %>% 
+ggplot(mapping=aes(x="", y=count, fill=Race)) +
+  geom_bar(stat="identity", width=1, alpha=0.8) +
+  coord_polar("y", start=0) +
+  theme(axis.text.x=element_blank())+
+  scale_fill_manual(values = mycols2) +
+  geom_text(aes(y = lab.count, label =count), color = "white") +
+  labs(title="Ethinicity distribution in Feschotte lab") +
+  theme_void()
 ```
 

@@ -7,6 +7,7 @@ Read csv and load libraries
 ``` r
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(knitr))
+library(ggplot2)
 lab <- read_csv("Lab_members_stats_Feschotte.csv")
 lab
 ```
@@ -38,3 +39,23 @@ lab %>%
 ```
 
 ![](world_map_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+### Gender distribution
+
+``` r
+mycols <-c("goldenrod2","palegreen4")
+lab %>% group_by(Gender) %>% 
+  summarize(count=n()) %>% 
+  arrange(desc(Gender)) %>%
+  mutate(lab.ypos = cumsum(count) - 0.5*count) %>% 
+ggplot(lab, mapping=aes(x="", y=count, fill=Gender)) +
+  geom_bar(stat="identity", width=1, alpha=0.8) +
+  coord_polar("y", start=0) +
+  theme(axis.text.x=element_blank())+
+  scale_fill_manual(values = mycols) +
+  geom_text(aes(y = lab.ypos, label =count), color = "white") +
+  labs(title="Gender distribution in Feschotte lab") +
+  theme_void()
+```
+
+![](world_map_files/figure-markdown_github/unnamed-chunk-6-1.png)
