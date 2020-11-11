@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 #Read csv and load libraries
-```{r,message=FALSE, results="hide"}
+```{r,message=FALSE}
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(knitr))
 library(ggplot2)

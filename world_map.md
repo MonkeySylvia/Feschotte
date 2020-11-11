@@ -12,6 +12,22 @@ lab <- read_csv("Lab_members_stats_Feschotte.csv")
 lab
 ```
 
+    ## # A tibble: 84 x 12
+    ##    Name  Country Race  Gender Position Start End   `Institution (p…
+    ##    <chr> <chr>   <chr> <chr>  <chr>    <dbl> <chr> <chr>           
+    ##  1 Maur… Brazil  Lati… M      VS          NA <NA>  Utah            
+    ##  2 Luc … Canada  Asian M      RS        2020 2020  Cornell         
+    ##  3 Xiao… China   Asian M      GS          NA <NA>  Utah            
+    ##  4 Qi W… China   Asian M      GS          NA <NA>  UTArlington     
+    ##  5 Sun … China   Asian M      PD          NA <NA>  UTArlington     
+    ##  6 Rene… China   Asian F      US        2017 2020  Cornell         
+    ##  7 Xiji… China   Asian F      US        2018 2018  Cornell         
+    ##  8 Min-… China   Asian M      VS        2018 2019  Cornell         
+    ##  9 Fabi… Colomb… Lati… M      US        2019 now   Cornell         
+    ## 10 Clém… France  White M      PD        2016 now   Cornell         
+    ## # … with 74 more rows, and 4 more variables: `Fellowship/Awards` <lgl>,
+    ## #   lat <dbl>, long <dbl>, number <dbl>
+
 Create a world map
 ==================
 
