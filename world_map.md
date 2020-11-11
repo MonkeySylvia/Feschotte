@@ -78,8 +78,8 @@ ggplot(lab, mapping=aes(x="", y=count, fill=Gender)) +
 
 ### Ethnicity distribution in Feschotte lab
 
-tidy up the PIs typo
-====================
+tidy up PIs typo
+================
 
 ``` r
 table(lab$Race)
@@ -93,13 +93,14 @@ table(lab$Race)
 lab_ethnicity <- lab %>% 
   mutate(Race= ifelse(Race == "white", "White", Race)) %>% 
   mutate(Race= ifelse(Race == "Latino?", "Latino", Race)) %>% 
-  mutate(Race= ifelse(Race == "Latina", "Latino", Race))
+  mutate(Race= ifelse(Race == "Latina", "Latino", Race)) %>% 
+  mutate(Race= ifelse(Race == "Black", "African American", Race))
 table(lab_ethnicity$Race)
 ```
 
     ## 
-    ##  Asian  Black Latino  White 
-    ##     29      3     10     42
+    ## African American            Asian           Latino            White 
+    ##                3               29               10               42
 
 ``` r
 mycols2 <-c("coral3","darkslategray4","steelblue4","orange3")
