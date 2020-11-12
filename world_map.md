@@ -78,8 +78,8 @@ ggplot(lab, mapping=aes(x="", y=count, fill=Gender)) +
 
 ### Ethnicity distribution in Feschotte lab
 
-tidy up PIs typo
-================
+tidy up typos
+=============
 
 ``` r
 table(lab$Race)
